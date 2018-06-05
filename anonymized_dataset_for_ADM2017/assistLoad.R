@@ -21,7 +21,9 @@ total_students <- unique(total_students)
 
 #Merge with training label to get isSTEM field
 training <- read.csv("training_label.csv")
-training <- training[,c(1, 5)] #just get the isSTEM field
+training <- training[,c(1, 4)] #just get the isSTEM field (5) or the MCAS standardized test field (4)
+#eliminate rows with -999 value in MCAS column
+training <- training[training$MCAS != -999,]
 total_students <- merge(total_students, training)
 
 
